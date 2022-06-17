@@ -3,18 +3,16 @@
 ///This app has just eduacational purposes.
 
 
-
-
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import './css-circular-prog-bar.css'
 import {useEffect, useState} from "react";  
 
-//IMPORT LIBS
+// IMPORT LIBS
 import axios from 'axios';
 
 
-//IMPORT COMPONENTS
+// IMPORT COMPONENTS
 import MoviesViewer from './Components/MoviesViewer'
 import GenresViewer from './Components/GenresViewer'
 import MenuViewer from './Components/MenuViewer'
@@ -22,15 +20,15 @@ import MenuViewer from './Components/MenuViewer'
 import * as Utils from './Utils'
 
 function App() {
-//Data
+// Data
 const [moviesData, setMoviesData]=useState([])
 
-//Pagination
+// Pagination
 const [page, setPage]=useState(1)
 const [total_pages, setTotalPages]= useState(null)
 
 
-//Fetching
+// Fetching
 const [isFetching, setIsFetching] = useState(false)
 const [isInfiniteScrollActive, setInfiniteScrollActive]= useState(false)
 const [customGenres, setCustomGenres]=useState([])
@@ -40,14 +38,6 @@ const APIQuery=(req)=>{
   axios.get(req.url)
   .then(response=>{
     setTotalPages(response.data.total_pages)
-
-    //Check  that feched data is not already in the collection
-  if(moviesData.length>0){
-    moviesData.forEach(element => {
-      if(element.page === response.data.page ){return}
-    });
-
-  }
 
     //Add new feched data to collection
     if(req.type!=Utils.FilterCommand){
@@ -140,7 +130,10 @@ useEffect(() => {
 useEffect(()=>{
   if(isInfiniteScrollActive){
     window.addEventListener('scroll',ScrollingEvent, {passive: true})
+  }else{
+    window.removeEventListener('scroll',ScrollingEvent)
   }
+  ]
 },[isInfiniteScrollActive])
 
 

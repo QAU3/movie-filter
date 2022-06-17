@@ -16,7 +16,7 @@ if(!movies || movies.length == 0 ){
 }
 
 return(
-        <div className="row row-cols-2 row-cols-md-4 g-1">
+        <div className="row row-cols-2 row-cols-md-5 g-1">
             {movies.map((obj)=>{
               return(
                 obj.results.map((movie)=>{
